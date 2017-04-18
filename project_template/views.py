@@ -13,6 +13,7 @@ def index(request):
     output_list = ''
     output=''
     search=''
+    zipped=[]
     if request.GET.get('search'):
         search = request.GET.get('search')
         output_list = find_similar(search)
