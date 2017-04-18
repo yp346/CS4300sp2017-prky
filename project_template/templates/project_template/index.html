@@ -39,20 +39,22 @@
 	    </div><br>
             <button type="submit" class="btn btn-info"> Go! </button>
         </form>
-        
+
+        {% for search,search_query in zipped %}
         <div class="form-inline global-search">
             <h3><b>COURSERA COURSES</b></h3><br><br>
-            {% for line in output %}
+        	<h4>You searched for: {{search}}</h4><br><br>
+            {% for line in search_query %}
                 <b>{{line.0}}</b><br> <a href="{{line.1}}">{{line.1}}</a><br><br>
             {% endfor %}
             
-            <div class="pagination">
+            <!--<div class="pagination">
                 <span class="step-links">
                     {% if output.has_previous %}
                     <a href= "{{magic_url}}&page={{ output.previous_page_number }}">previous</a>
                     {% endif %}
                     
-                    <!-- Showing the page numbers in Html Page -->
+                    Showing the page numbers in Html Page
                     <span class="current">
                     Page {{ output.number }} of {{ output.paginator.num_pages }}
                     </span>
@@ -61,7 +63,8 @@
                     <a href= "{{magic_url}}&page={{ output.next_page_number }}">next</a>
                     {% endif %}
                 </span>
-            </div>
+            </div>-->
         </div>
+        {% endfor %}
     </body>
 </html>

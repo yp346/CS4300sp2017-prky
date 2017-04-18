@@ -63,12 +63,17 @@ def tfidf_sim(q):
         content = fp.read()
 	name_list = json.loads(content.decode("utf-8","ignore"))
     new_tfidf =  TfidfVectorizer(vocabulary=features,max_features=5000, stop_words="english",norm="l2")
-    query = new_tfidf.fit_transform([q]).toarray()
-    final = np.dot(query,doc_by_vocab.T)
-    final = final.flatten()
-    sorted_final = np.argsort(final)[::-1]
-    ret_list = []
-    for x in sorted_final:
-        ret_list.append((name_list[x],url_list[x]))
-    return ret_list
+    query_list = q.split(",")
+    query_by_vocab = new_tfidf.fit_transform(query_list).toarray()
+    sim_matrix = np.dot(query_by_vocab,doc_by_vocab.T)
+    #sim_matrix = final.flatten()
+    sorted_sim = np.argsort(-sim_matrix)
+    return_list = []
+    for x in sorted_sim:
+    	temp = []
+    	for y in x[:5]:
+        	temp.append((name_list[y],url_list[y]))
+        return_list.append(temp)
+
+    return return_list
 
