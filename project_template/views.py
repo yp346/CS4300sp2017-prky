@@ -16,7 +16,7 @@ def index(request):
         search = request.GET.get('search')
         output_list = find_similar(search)
 	output_list1 = tfidf_sim(search)
-        paginator = Paginator(output_list1, 10)
+        paginator = Paginator(output_list1, 4)
         page = request.GET.get('page')
         try:
             output = paginator.page(page)

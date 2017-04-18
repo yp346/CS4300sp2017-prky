@@ -52,7 +52,7 @@ def tfidf_sim(q):
         doc_by_vocab = np.load(fp)
     with open(file_features,"r") as fp:
         content = fp.read()
-        features = json.loads(content.decode("utf-8","ignore"))
+        features = json.loads(content)#.decode("utf-8","ignore"))
     with open(course_desc_path,"r") as fp:
         content = fp.read()
 	desc_list = json.loads(content.decode("utf-8","ignore"))
@@ -62,7 +62,7 @@ def tfidf_sim(q):
     with open(course_name_path,"r") as fp:
         content = fp.read()
 	name_list = json.loads(content.decode("utf-8","ignore"))
-    new_tfidf =  TfidfVectorizer(vocabulary=features,stop_words="english",norm="l2")
+    new_tfidf =  TfidfVectorizer(vocabulary=features,max_features=5000, stop_words="english",norm="l2")
     query = new_tfidf.fit_transform([q]).toarray()
     final = np.dot(query,doc_by_vocab.T)
     final = final.flatten()

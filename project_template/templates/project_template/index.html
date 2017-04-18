@@ -7,8 +7,8 @@
     <body>
         <!-- TODO: Please change lines 10 and 11 according to your actual project name and student names-->
         <div class="topcorner">
-            <p>Course recommendation for Job Descriptions</p>
-            <p>Khaleel (kk924), Pracheth Javali (pj252), Ria Mirchandani (rp245), Yashaswini Papanna (yp346)</p>
+            <p>Course Recommendations for Job Description</p>
+            <p>kk924, pj252, rpm245, yp346</p>
         </div>
         
         <form class="form-inline global-search" method='GET'>
@@ -39,9 +39,9 @@
         </form>
         
         <div class="form-inline global-search">
-            <h3><b>COURSERA COURSES</b></h3><br>
+            <h3><b>COURSERA COURSES</b></h3><br><br>
             {% for line in output %}
-                <b>{{line.0}}</b>: <a href="{{line.1}}">{{line.1}}</a><br>
+                <b>{{line.0}}</b><br> <a href="{{line.1}}">{{line.1}}</a><br><br>
             {% endfor %}
             
             <div class="pagination">
