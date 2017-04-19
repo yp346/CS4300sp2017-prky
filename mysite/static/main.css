@@ -28,11 +28,42 @@ margin-bottom:0;
 position:absolute;
 top:2%;
 right:2%;
+color: #fc4a1a;
+font-family:Segoe UI;
+font-weight:bold;
+text-align:center;
 }
 .btn{
-background-color: #4285F4;
+background-color: #ffcc00;
 border: none
+}
+.btn:hover {
+background: #fc4a1a
 }
 .step-links a{
 color: #4285F4;
+}
+.you-searched-for {
+background:#ffffff;
+border-top-right-radius:25px;
+border-top-left-radius:25px;
+color:#4abdac;
+border-bottom: 4px solid #ffcc00;
+font-family:Segoe UI;
+}
+.display-urls {
+width:400px;
+float:left;
+border-radius:25px;
+height:400px;
+margin:50px;
+text-align:center;
+background:#ffffff;
+font-family:Segoe UI;
+font-size: 15px;
+}
+.top-banner {
+background:#4abdac;
+color:white;
+font-family:Segoe UI;
 }

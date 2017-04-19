@@ -6,46 +6,34 @@
     
     <body>
         <!-- TODO: Please change lines 10 and 11 according to your actual project name and student names-->
-        <div class="topcorner">
+	<div class="top-banner">
+	<div class="topcorner">
             <p>Course Recommendations for Job Description</p>
             <p>kk924, pj252, rpm245, yp346</p>
         </div>
         
         <form class="form-inline global-search" method='GET'>
-            <h1 style="font-size: 55px; font-family:Futura; color: #4285F4">
-                J
-                <font color=#EA4335>O</font>
-                <font color=#FBBC05>B</font>
-                &nbsp;
-                <font color=#34A853>D</font>
-                <font color=#EA4335>E</font>
-		S
-		<font color=#EA4335>C</font>
-		<font color=#FBBC05>R</font>
-		I
-		<font color=#34A853>P</font>
-	        <font color=#EA4335>T</font>
-		I
-		<font color=#EA4335>O</font>
-		<font color=#FBBC05>N</font>
-            </h1>
+            <h1 style="font-size: 55px; font-family:Segoe UI">
+            COURSE RECOMMENDATION SYSTEM
+	    </h1>
             
             <br><br>
             
             <div class="form-group">
 	        
-                <input id="input" type="text" name="search" class="form-control" placeholder="Enter Job Description here"><br><br>
-<!--                <input id="input" type="text" name="search1" class="form-control" placeholder="Your Input"><br><br>-->
+                <input id="input" type="text" name="search" class="form-control" placeholder="Enter skills separated by comma"><br><br>
+<!--                <class="form-inline global-search" input id="input" type="text" name="search1" class="form-control" placeholder="Your Input"><br><br>-->
 	    </div><br>
-            <button type="submit" class="btn btn-info"> Go! </button>
+            <button type="submit" class="btn btn-info"> Search Courses! </button>
         </form>
+	</div>
 
-        {% for search,search_query in zipped %}
-        <div class="form-inline global-search">
-            <h3><b>COURSERA COURSES</b></h3><br><br>
-        	<h4>You searched for: {{search}}</h4><br><br>
+	{% for search,search_query in zipped %}
+        <div class="display-urls">
+            <div class="you-searched-for">   
+	    <h3>You searched for: <b style="color:#fc4a1a">{{search}}</b></h3></div><br>
             {% for line in search_query %}
-                <b>{{line.0}}</b><br> <a href="{{line.1}}">{{line.1}}</a><br><br>
+                <b>{{line.0}}</b><br> <a href="{{line.1}}" style="color:#07889b">{{line.1}}</a><br><br>
             {% endfor %}
             
             <!--<div class="pagination">
