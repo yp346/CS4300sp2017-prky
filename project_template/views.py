@@ -7,6 +7,7 @@ from .form import QueryForm
 from .test import find_similar
 from .test import tfidf_sim
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import nltk
 
 # Create your views here.
 def index(request):
@@ -15,12 +16,37 @@ def index(request):
     search=''
     version="First"
     zipped=[]
+    version = request.GET.get('change')
     if request.GET.get('search'):
-        search = request.GET.get('search')
-        output_list = find_similar(search)
-        output = tfidf_sim(search)
-        search = search.split(",")
-        zipped = zip(search, output)
+    	if request.GET.get(version == 'First'):
+        	search = request.GET.get('search')
+        	output_list = find_similar(search)
+        	output = tfidf_sim(search)
+        	search = search.split(",")
+        	zipped = zip(search, output)
+        else:
+        	patterns = """
+        				NP: {<NNP>+}
+    					{<DT|PP\$>?<JJ>*<NN*>+}
+    					"""
+    		NPChunker = nltk.RegexpParser(patterns)
+        	search = request.GET.get('search')
+        	sentences = nltk.sent_tokenize(search)
+    		sentences = [nltk.word_tokenize(sent) for sent in sentences]
+    		sentences = [nltk.pos_tag(sent) for sent in sentences]
+    		sentences = [NPChunker.parse(sent) for sent in sentences]
+    		nps = []
+    		for tree in sentences:
+        		for subtree in tree.subtrees():
+        			if subtree.label() == 'NP':
+        				t = subtree
+        				t = ' '.join(word for word, tag in t.leaves())
+        				nps.append(t)
+        	search = ",".join(nps)
+        	output_list = find_similar(search)
+        	output = tfidf_sim(search)
+        	search = search.split(",")
+        	zipped = zip(search, output)
         #paginator = Paginator(output_list1, 4)
         #page = request.GET.get('page')
         #try:
@@ -30,7 +56,7 @@ def index(request):
         #except EmptyPage:
         #    output = paginator.page(paginator.num_pages)
     #if request.GET.get('version') == "First":
-    version = request.GET.get('change')
+    
     return render_to_response('project_template/index.html', 
                               {'output': output,
                                'search': search,
