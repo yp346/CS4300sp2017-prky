@@ -6,6 +6,7 @@ from django.template import loader
 from .form import QueryForm
 from .test import find_similar
 from .test import tfidf_sim
+from .test import tfidf_sentiment_sim
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import nltk
 
@@ -14,11 +15,11 @@ def index(request):
     output_list = ''
     output=''
     search=''
-    version="First"
+    #version="First"
     zipped=[]
     version = request.GET.get('change')
     if request.GET.get('search'):
-    	if request.GET.get(version == 'First'):
+    	if version == 'First':
         	search = request.GET.get('search')
         	output_list = find_similar(search)
         	output = tfidf_sim(search)
@@ -42,7 +43,7 @@ def index(request):
     				nps.append(t)
         	search = ",".join(nps)
         	output_list = find_similar(search)
-        	output = tfidf_sim(search)
+        	output = tfidf_sentiment_sim(search)
         	search = search.split(",")
         	zipped = zip(search, output)
         #paginator = Paginator(output_list1, 4)
@@ -59,20 +60,6 @@ def index(request):
                               {'output': output,
                                'search': search,
                                'zipped': zipped,
-			       'version': version,
+			                     'version': version,
                                'magic_url': request.get_full_path(),
                                })
-    '''elif request.GET.get('version') == "Second":
-         return render_to_response('project_template/index_proto2.html',
-	                        {'output': output,
-				'search': search,
-				'zipped': zipped,
-				'magic_url': request.get_full_path(),
-				})
-    elif request.GET.get('version') == "Final":
-        return render_to_response('project_template/index_proto3.html',
-	                         {'output': output,
-				'search': search,
-				'zipped': zipped,
-		 		'magic_url': request.get_full_path(),
-				})'''
