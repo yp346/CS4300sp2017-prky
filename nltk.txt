@@ -1,0 +1,5 @@
+brown
+reuters
+treebank
+universal_treebanks_v20
+wordnet
