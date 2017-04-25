@@ -31,17 +31,15 @@ def index(request):
     					"""
     		NPChunker = nltk.RegexpParser(patterns)
         	search = request.GET.get('search')
-        	sentences = nltk.sent_tokenize(search)
-    		sentences = [nltk.word_tokenize(sent) for sent in sentences]
-    		sentences = [nltk.pos_tag(sent) for sent in sentences]
-    		sentences = [NPChunker.parse(sent) for sent in sentences]
+        	words = nltk.word_tokenize(search)
+        	tags = nltk.pos_tag(words)
+        	tree = NPChunker.parse(tags)
     		nps = []
-    		for tree in sentences:
-        		for subtree in tree.subtrees():
-        			if subtree.label() == 'NP':
-        				t = subtree
-        				t = ' '.join(word for word, tag in t.leaves())
-        				nps.append(t)
+    		for subtree in tree.subtrees():
+    			if subtree.label() == 'NP':
+    				t = subtree
+    				t = ' '.join(word for word, tag in t.leaves())
+    				nps.append(t)
         	search = ",".join(nps)
         	output_list = find_similar(search)
         	output = tfidf_sim(search)
