@@ -14,14 +14,27 @@
         
         <form class="form-inline global-search" method='GET'>
             <h1 style="font-size: 55px; font-family:Segoe UI">
-            COURSE RECOMMENDATION SYSTEM
+	    {% if version == "Final" %}
+            COURSE RECOMMENDATION SYSTEM 3
+	    {% elif version == "Second"%}
+	    COURSE RECOMMENDATION SYSTEM 2
+	    {% else %}
+	    COURSE RECOMMENDATION SYSTEM 1
+	    {% endif %}
 	    </h1>
             
             <br><br>
             
             <div class="form-group">
-	        
-                <input id="input" type="text" name="search" class="form-control" placeholder="Enter skills separated by comma"><br><br>
+	      	<button name="change" type="submit" class="btn btn-info" value="First">First Prototype </button>
+		&nbsp;&nbsp;<button name="change" type="submit" class="btn btn-info" value="Second">Second Prototype </button>
+		&nbsp;&nbsp;<button name="change" type="submit" class="btn btn-info" value="Final">Final Version</button><br><br>
+		{% if version == "Second" or version == "Final" %}
+	        <textarea name="search" rows="10" cols="70" class="form-control" placeholder="Enter job description..." color="black"></textarea>
+		{% else  %}
+                <input id="input" type="text" name="search" class="form-control" placeholder="Enter skills separated by comma">
+		{% endif  %}
+		<br><br>
 <!--                <class="form-inline global-search" input id="input" type="text" name="search1" class="form-control" placeholder="Your Input"><br><br>-->
 	    </div><br>
             <button type="submit" class="btn btn-info"> Search Courses! </button>

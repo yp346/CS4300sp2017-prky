@@ -1,6 +1,7 @@
 from .models import Docs
 import os
 import Levenshtein
+import nltk
 import json
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -11,19 +12,6 @@ def read_file(n):
 	file = open(path)
 	transcripts = json.load(file)
 	return transcripts
-
-def read_tfidf_file(n):
-        path = Docs.objects.get(id=n).address;
-	return path
-	file = open(path)
-	vectorizer = pickle.load(file)
-	return vectorizer
-
-def read_tfidf_numpy(n):
-        path = Docs.objects.get(id=n).address;
-	file = open(path)
-        tfidf_numpy = np.load(file)
-	return tfidf_numpy
 
 def _edit(query, msg):
     return Levenshtein.distance(query.lower(), msg.lower())
