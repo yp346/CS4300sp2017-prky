@@ -4,3 +4,4 @@ treebank
 universal_treebanks_v20
 wordnet
 punkt
+averaged_perceptron_tagger
