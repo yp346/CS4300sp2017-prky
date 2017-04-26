@@ -120,7 +120,7 @@ def tfidf_sentiment_sim(q):
 
     final_return_list = []
     for skill in senti_score_list:
-        skill.sort()
+        skill.sort(reverse = True)
         temp = []
         for t in skill[:5]:
             temp.append((str(t[0]),t[1],t[2]))
