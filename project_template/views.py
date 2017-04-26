@@ -22,7 +22,8 @@ def index(request):
     known_courses = ""
     #version = request.GET.get('submit_button')
     if request.GET.get('known_courses'):
-        known_courses = request.GET.get('known_courses')
+        known_courses1 = request.GET.getlist('known_courses')
+	known_courses = ",".join(known_courses1)
     if request.GET.get('search'):
     	original_search = request.GET.get('search')
 	if version == 'First':
@@ -47,12 +48,18 @@ def index(request):
     				t = subtree
     				t = ' '.join(word for word, tag in t.leaves())
     				nps.append(t)
-        	search = ",".join(nps)
-        	output_list = find_similar(search)
-        	output = tfidf_sentiment_sim(search)
-        	search = search.split(",")
-        	zipped = zip(search, output)
-		second_select = "True"
+        	#search = ",".join(nps)
+        	#output_list = find_similar(search)
+        	if known_courses!="":
+		    output = tfidf_sentiment_sim(known_courses)
+		    zipped = zip(known_courses1,output)
+		    second_select = "False"
+		else:
+		    output = "s"*len(nps)
+        	#search = search.split(",")
+        	    #zipped = zip(search, output)
+		    zipped = zip(nps,output)
+		    second_select = "True"
         #paginator = Paginator(output_list1, 4)
         #page = request.GET.get('page')
         #try:
@@ -68,6 +75,7 @@ def index(request):
                                'search': search,
                                'zipped': zipped,
 			       'second_select': second_select,
+			       'known_courses': known_courses,
 			       'original_search':original_search,
 			       'version': version,
                                'magic_url': request.get_full_path(),
