@@ -40,6 +40,9 @@ border: none
 .btn:hover {
 background: #fc4a1a
 }
+.btn:active {
+background: #fc4a1a
+}
 .step-links a{
 color: #4285F4;
 }

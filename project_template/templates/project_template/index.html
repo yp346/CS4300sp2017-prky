@@ -11,7 +11,6 @@
             <p>Course Recommendations for Job Description</p>
             <p>kk924, pj252, rpm245, yp346</p>
         </div>
-        
         <form class="form-inline global-search" method='GET'>
             <h1 style="font-size: 55px; font-family:Segoe UI">
 	    {% if version == "Final" %}
@@ -27,21 +26,43 @@
             
             <div class="form-group">
             <b>SELECT A PROTOTYPE</b><br><br> 
-            <input type="radio" name="change" value="First"> First
-            <input type="radio" name="change" value="Second"> Second
-            <input type="radio" name="change" value="Final"> Final
-	      	<!--<button name="change" type="submit" class="btn btn-info" value="First">First Prototype </button>
+            <!--<input type="radio" name="change" value="First"> First Prototype
+            <input type="radio" name="change" value="Second"> Second Prototype
+            <input type="radio" name="change" value="Final"> Final version-->
+	        {% if version == "First" %}
+		<button name="change" type="submit" class="btn btn-info" value="First" background="#fc4a1a">First Prototype </button>
+		{% else %}
+	      	<button name="change" type="submit" class="btn btn-info" value="First">First Prototype </button>
+		{% endif %}
+		{% if version == "Second" %}
+		&nbsp;&nbsp;<button name="change" type="submit" class="btn btn-info" value="Second" background-color="#fc4a1a">Second Prototype </button>
+		{% else %}
 		&nbsp;&nbsp;<button name="change" type="submit" class="btn btn-info" value="Second">Second Prototype </button>
-		&nbsp;&nbsp;<button name="change" type="submit" class="btn btn-info" value="Final">Final Version</button>--><br><br>
-		{% if True %}
-	        <textarea name="search" rows="10" cols="70" class="form-control" placeholder="Enter job description..." color="black"></textarea>
+		{% endif %}
+		{% if version == "Final" %}
+		&nbsp;&nbsp;<button name="change" type="submit" class="btn btn-info" value="Final" background="#fc4a1a">Final Version</button><br><br>
+		{% else %}
+		&nbsp;&nbsp;<button name="change" type="submit" class="btn btn-info" value="Final">Final Version</button><br><br>
+		{% endif %}
+		{% if version == "Second" or version == "Final" %}
+	        <textarea name="search" rows="10" cols="70" class="form-control" placeholder="Enter job description..." color="black">{{original_search}}</textarea>
 		{% else  %}
             <input id="input" type="text" name="search" class="form-control" placeholder="Enter skills separated by comma">
 		{% endif  %}
 		<br><br>
 <!--                <class="form-inline global-search" input id="input" type="text" name="search1" class="form-control" placeholder="Your Input"><br><br>-->
 	    </div><br>
-            <button type="submit" class="btn btn-info"> Search Courses! </button>
+	    <button name="change" type="submit" class="btn btn-info" value="{{version}}"> Search Courses! </button><br><br>
+	    {%  if second_select == "True" and version != "First" %}
+	    <b>SELECT SKILLS YOU WANT TO IMPROVE</b><br><br>
+	    <div>
+	    {% for search,_ in zipped %}
+	    <!--<input type="checkbox" name="known_courses" value="{{search}}"> {{search}}&nbsp;&nbsp;-->
+	    <input type="checkbox" name="known_courses" value="{{search}}"> {{search}}&nbsp;&nbsp;&nbsp;
+	    {% endfor %}
+	    </div><br><br>
+            <button name="change" type="submit" class="btn btn-info" value="{{version}}"> Filter Courses! </button>
+	    {% endif %}
         </form>
 	</div>
 
@@ -51,9 +72,9 @@
 	    <h3>You searched for: <b style="color:#fc4a1a">{{search}}</b></h3></div><br>
             {% for line in search_query %}
                 {% if version == "First" %}
-                <b>{{line.0}}</b><br> <a href="{{line.1}}" style="color:#07889b">{{line.1}}</a><br><br>
+                <b>{{line.0}}</b><br> <a target="_blank" href="{{line.1}}" style="color:#07889b">{{line.1}}</a><br><br>
                 {% else %}
-                <b>{{line.1}}</b><br> <a href="{{line.2}}" style="color:#07889b">{{line.2}}</a><br><br>
+                <b>{{line.1}}</b><br> <a target="_blank" href="{{line.2}}" style="color:#07889b">{{line.2}}</a><br><br>
                 {% endif %}
             {% endfor %}
         </div>

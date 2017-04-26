@@ -15,11 +15,17 @@ def index(request):
     output_list = ''
     output=''
     search=''
-    #version="First"
+    original_search=""
     zipped=[]
+    second_select = "False"
     version = request.GET.get('change')
+    known_courses = ""
+    #version = request.GET.get('submit_button')
+    if request.GET.get('known_courses'):
+        known_courses = request.GET.get('known_courses')
     if request.GET.get('search'):
-    	if version == 'First':
+    	original_search = request.GET.get('search')
+	if version == 'First':
         	search = request.GET.get('search')
         	output_list = find_similar(search)
         	output = tfidf_sim(search)
@@ -46,6 +52,7 @@ def index(request):
         	output = tfidf_sentiment_sim(search)
         	search = search.split(",")
         	zipped = zip(search, output)
+		second_select = "True"
         #paginator = Paginator(output_list1, 4)
         #page = request.GET.get('page')
         #try:
@@ -60,6 +67,8 @@ def index(request):
                               {'output': output,
                                'search': search,
                                'zipped': zipped,
-			                     'version': version,
+			       'second_select': second_select,
+			       'original_search':original_search,
+			       'version': version,
                                'magic_url': request.get_full_path(),
                                })
