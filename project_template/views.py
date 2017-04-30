@@ -10,6 +10,8 @@ from .test import tfidf_sentiment_sim
 from .test import tfidf_sentiment_sim_weighted
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import nltk
+import json
+import os
 
 # Create your views here.
 def index(request):
@@ -62,6 +64,11 @@ def index(request):
         	    	zipped = zip(nps,output)
 			second_select = "True"
 	else:
+		dir_cur = os.path.dirname(__file__)
+		brown_fdist_path = os.path.join(dir_cur,"../jsons/brown_fdist.json")
+		with open(brown_fdist_path,"r") as fp:
+			content = fp.read()
+			brown_fdist = json.loads(content.decode("utf-8","ignore"))
         	patterns = """
         				NP: {<NNP>+}
     					{<DT|PP\$>?<JJ>*<NN*>+}
@@ -77,7 +84,11 @@ def index(request):
     				t = subtree
     				t = ' '.join(word for word, tag in t.leaves())
 				if t not in nps:
-    					nps.append(t)
+					if t in brown_fdist.keys():
+						if brown_fdist[t] < 10:
+    							nps.append(t)
+					else:
+						nps.append(t)
         	#search = ",".join(nps)
         	#output_list = find_similar(search)
         	if known_courses!="":
