@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <link rel="stylesheet" href="/static/bootstrap.min.css">
         <link rel="stylesheet" href="/static/main.css">
@@ -7,10 +7,10 @@
     <body>
         <!-- TODO: Please change lines 10 and 11 according to your actual project name and student names-->
 	<div class="top-banner">
-	<div class="topcorner">
+		<div class="topcorner">
             <p>Course Recommendations for Job Description</p>
             <p>kk924, pj252, rpm245, yp346</p>
-        </div>
+       	</div>
         <form class="form-inline global-search" method='GET'>
             <h1 style="font-size: 55px; font-family:Segoe UI">
 	    {% if version == "Final" %}
@@ -21,7 +21,7 @@
 	    COURSE RECOMMENDATION SYSTEM v1
 	    {% endif %}
 	    </h1>
-            
+
             <br><br>
             
             <div class="form-group">
@@ -76,17 +76,19 @@
                 {% elif version == "Second" %}
                 <b>{{line.1}}</b><br> <a target="_blank" href="{{line.2}}" style="color:#07889b">{{line.2}}</a><br><br>
 				{% else %}
-                <b>{{line.1}}</b>
+                <span style="color:#fc4a1a"><b>{{line.1}}</b></span>
 				<br> <a target="_blank" href="{{line.2}}" style="color:#07889b">{{line.2}}</a>
 				<br><b> Sentiment Score: &nbsp;
 					{% if line.0 > 0 %}
 					<span style="background-color:#82e0aa; width:60px">{{line.0}}</span>
 					{% elif line.0 == 0.0 %}
-					<span style="background-color:#f7dc6f; width:60px">{{line.0}}BBB</span>
+					<span style="background-color:#f7dc6f; width:60px">{{line.0}}</span>
 					{% else %}
-					<span style="background:#f1948a; width:60px">{{line.0}}CCC</span>
+					<span style="background:#f1948a; width:60px">{{line.0}}</span>
 					{% endif %}
-					</b><br><br>
+					</b><br>
+				<b>Sentiment Tags: </b><br>
+				<b><span class="rainbow">{{line.3}}, {{line.4}}</span></b><br><br>
                 {% endif %}
             {% endfor %}
         </div>

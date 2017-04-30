@@ -205,7 +205,40 @@ def tfidf_sentiment_sim_weighted(q):
     #        temp.append((str(t[0]),t[1],t[2]))
     #    final_return_list.append(temp)
 
-    return return_list
+    review_tag_list = get_review_tags(return_list)
 
+    final_list = []
+
+    for i in range(len(return_list)):
+        temp = []
+        skill_tag_list = review_tag_list[i]
+        for j in range(len(return_list[i])):
+            t = return_list[i][j]
+            temp.append((t[0],t[1],t[2],', '.join(skill_tag_list[j][3:][::-1]),', '.join(skill_tag_list[j][:3][::-1])))
+        final_list.append(temp)
+
+    return final_list
+
+def get_review_tags(course_list):
+    dir_cur = os.path.dirname(__file__)
+    review_tag_path = os.path.join(dir_cur, "../jsons/course_review_tags_senti_scores.json")
+
+    with open(review_tag_path,"r") as fp:
+        content = fp.read()
+        review_tag_dict = json.loads(content.decode("utf-8","ignore"))
+
+    return_tag_list = []
+    for skill in course_list:
+        skill_tag_list = []
+        for course in skill:
+            course_url = course[2]
+            review_tag_list = review_tag_dict[course_url]
+            temp = []
+            for tag in review_tag_list:
+                temp.append(tag[1])
+            skill_tag_list.append(temp)
+        return_tag_list.append(skill_tag_list)
+
+    return return_tag_list
 
 
