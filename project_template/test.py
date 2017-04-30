@@ -194,7 +194,7 @@ def tfidf_sentiment_sim_weighted(q):
     for i in range(sorted_final_score.shape[0]):
         temp = []
         for j in sorted_final_score[i][:5]:
-            temp.append((str(final_score_matrix[i][j]),name_list[j],url_list[j]))
+            temp.append((str(round(senti_score_matrix[i][j],3)),name_list[j],url_list[j]))
         return_list.append(temp)
 
     #final_return_list = []

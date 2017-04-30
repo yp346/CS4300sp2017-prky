@@ -73,8 +73,20 @@
             {% for line in search_query %}
                 {% if version == "First" %}
                 <b>{{line.0}}</b><br> <a target="_blank" href="{{line.1}}" style="color:#07889b">{{line.1}}</a><br><br>
-                {% else %}
+                {% elif version == "Second" %}
                 <b>{{line.1}}</b><br> <a target="_blank" href="{{line.2}}" style="color:#07889b">{{line.2}}</a><br><br>
+				{% else %}
+                <b>{{line.1}}</b>
+				<br> <a target="_blank" href="{{line.2}}" style="color:#07889b">{{line.2}}</a>
+				<br><b> Sentiment Score: &nbsp;
+					{% if line.0 > 0 %}
+					<span style="background-color:#82e0aa; width:60px">{{line.0}}</span>
+					{% elif line.0 == 0.0 %}
+					<span style="background-color:#f7dc6f; width:60px">{{line.0}}BBB</span>
+					{% else %}
+					<span style="background:#f1948a; width:60px">{{line.0}}CCC</span>
+					{% endif %}
+					</b><br><br>
                 {% endif %}
             {% endfor %}
         </div>
