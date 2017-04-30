@@ -71,9 +71,17 @@ color:white;
 font-family:Segoe UI;
 }
 
-.rainbow {
-background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #18683b), color-stop(0.17, #28b463), color-stop(0.34, #58d68d), color-stop(0.51, #f1c40f), color-stop(0.68, #f39c12),color-stop(0.85, #e67e22), color-stop(1, #e74c3c) );
-background-image: gradient( linear, left top, right top, color-stop(0, #18683b), color-stop(0.17, #28b463), color-stop(0.34, #58d68d), color-stop(0.51, #f1c40f), color-stop(0.68, #f39c12),color-stop(0.85, #e67e22), color-stop(1, #e74c3c) );
+.rainbow_positive {
+background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #18683b), color-stop(0.33, #28b463), color-stop(0.67, #58d68d), color-stop(1, #f1c40f) );
+background-image: gradient( linear, left top, right top, color-stop(0, #18683b), color-stop(0.33, #28b463), color-stop(0.67, #58d68d), color-stop(1, #f1c40f) );
+color:transparent;
+-webkit-background-clip: text;
+background-clip: text;
+}
+
+.rainbow_negitive {
+background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f1c40f), color-stop(0.33, #f39c12),color-stop(0.67, #e67e22), color-stop(1, #e74c3c) );
+background-image: gradient( linear, left top, right top, color-stop(0, #f1c40f), color-stop(0.33, #f39c12),color-stop(0.67, #e67e22), color-stop(1, #e74c3c) );
 color:transparent;
 -webkit-background-clip: text;
 background-clip: text;
