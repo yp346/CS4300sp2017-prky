@@ -72,8 +72,8 @@ font-family:Segoe UI;
 }
 
 .rainbow {
-background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
-background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #18683b), color-stop(0.17, #28b463), color-stop(0.34, #58d68d), color-stop(0.51, #f1c40f), color-stop(0.68, #f39c12),color-stop(0.85, #e67e22), color-stop(1, #e74c3c) );
+background-image: gradient( linear, left top, right top, color-stop(0, #18683b), color-stop(0.17, #28b463), color-stop(0.34, #58d68d), color-stop(0.51, #f1c40f), color-stop(0.68, #f39c12),color-stop(0.85, #e67e22), color-stop(1, #e74c3c) );
 color:transparent;
 -webkit-background-clip: text;
 background-clip: text;
