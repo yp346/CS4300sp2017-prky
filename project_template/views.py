@@ -68,7 +68,7 @@ def index(request):
     					"""
     		NPChunker = nltk.RegexpParser(patterns)
         	search = request.GET.get('search')
-        	words = nltk.word_tokenize(search)
+        	words = nltk.word_tokenize(search.lower())
         	tags = nltk.pos_tag(words)
         	tree = NPChunker.parse(tags)
     		nps = []
@@ -76,7 +76,8 @@ def index(request):
     			if subtree.label() == 'NP':
     				t = subtree
     				t = ' '.join(word for word, tag in t.leaves())
-    				nps.append(t)
+				if t not in nps:
+    					nps.append(t)
         	#search = ",".join(nps)
         	#output_list = find_similar(search)
         	if known_courses!="":
