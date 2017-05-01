@@ -30,85 +30,7 @@
 <body>
 <!-- TODO: Please change lines 10 and 11 according to your actual project name and student names-->
 
-{% if version == "First" or version == "Second" %}
-<div class="top-banner">
-    <div class="topcorner">
-                    <div class="pollSlider"></div>
-            <div id="pollSlider-button"></div>
-        <p>kk924, pj252, rpm245, yp346</p>
-    </div>
-    <form class="form-inline global-search" method='GET'>
-        <h1 style="font-size: 50px; font-family:Futura">
-            {% if version == "Final" %}
-            COURSE RECOMMENDATION SYSTEM v3
-            {% elif version == "Second"%}
-            COURSE RECOMMENDATION SYSTEM v2
-            {% else %}
-            COURSE RECOMMENDATION SYSTEM v1
-            {% endif %}
-        </h1>
-
-        <br><br>
-
-        <div class="form-group">
-
-            <b>SELECT A PROTOTYPE</b><br><br>
-            <!--<input type="radio" name="change" value="First"> First Prototype
-            <input type="radio" name="change" value="Second"> Second Prototype
-            <input type="radio" name="change" value="Final"> Final version-->
-            {% if version == "First" %}
-            <button name="change" type="submit" class="btn btn-info" value="First" background="#fc4a1a">First
-                Prototype
-            </button>
-            {% else %}
-            <button name="change" type="submit" class="btn btn-info" value="First">First Prototype</button>
-            {% endif %}
-            {% if version == "Second" %}
-            &nbsp;&nbsp;
-            <button name="change" type="submit" class="btn btn-info" value="Second" background-color="#fc4a1a">Second
-                Prototype
-            </button>
-            {% else %}
-            &nbsp;&nbsp;
-            <button name="change" type="submit" class="btn btn-info" value="Second">Second Prototype</button>
-            {% endif %}
-            {% if version == "Final" %}
-            &nbsp;&nbsp;
-            <button name="change" type="submit" class="btn btn-info" value="Final" background="#fc4a1a">Final Version
-            </button>
-            <br><br>
-            {% else %}
-            &nbsp;&nbsp;
-            <button name="change" type="submit" class="btn btn-info" value="Final">Final Version</button>
-            <br><br>
-            {% endif %}
-            {% if version == "Second" or version == "Final" %}
-            <textarea name="search" rows="10" cols="70" class="form-control" placeholder="Enter job description..."
-                      color="black">{{original_search}}</textarea>
-            {% else %}
-            <input id="input" type="text" name="search" class="form-control"
-                   placeholder="Enter skills separated by comma">
-            {% endif %}
-            <br><br>
-            <!--                <class="form-inline global-search" input id="input" type="text" name="search1" class="form-control" placeholder="Your Input"><br><br>-->
-        </div>
-        <br>
-        <button name="change" type="submit" class="btn btn-info" value="{{version}}"> Search Courses!</button>
-        <br><br>
-        {% if second_select == "True" and version != "First" %}
-        <b>SELECT SKILLS YOU WANT TO IMPROVE</b><br><br>
-        <div>
-            {% for search,_ in zipped %}
-            <!--<input type="checkbox" name="known_courses" value="{{search}}"> {{search}}&nbsp;&nbsp;-->
-            <input type="checkbox" name="known_courses" value="{{search}}"> {{search}}&nbsp;&nbsp;&nbsp;
-            {% endfor %}
-        </div>
-        <br><br>
-        <button name="change" type="submit" class="btn btn-info" value="{{version}}"> Filter Courses!</button>
-        {% endif %}
-    </form>
-</div>
-{% else %}
+{% if version == "Final" %}
 <div class="top-banner-v3">
     <div class="topcorner">
                     <div class="pollSlider"></div>
@@ -183,6 +105,84 @@
         </div>
         <br><br>
         <button name="change" type="submit" class="btn-v3 btn-info" value="{{version}}"> Filter Courses!</button>
+        {% endif %}
+    </form>
+</div>
+{% else %}
+<div class="top-banner">
+    <div class="topcorner">
+                    <div class="pollSlider"></div>
+            <div id="pollSlider-button"></div>
+        <p>kk924, pj252, rpm245, yp346</p>
+    </div>
+    <form class="form-inline global-search" method='GET'>
+        <h1 style="font-size: 50px; font-family:Futura">
+            {% if version == "Final" %}
+            COURSE RECOMMENDATION SYSTEM v3
+            {% elif version == "Second"%}
+            COURSE RECOMMENDATION SYSTEM v2
+            {% else %}
+            COURSE RECOMMENDATION SYSTEM v1
+            {% endif %}
+        </h1>
+
+        <br><br>
+
+        <div class="form-group">
+
+            <b>SELECT A PROTOTYPE</b><br><br>
+            <!--<input type="radio" name="change" value="First"> First Prototype
+            <input type="radio" name="change" value="Second"> Second Prototype
+            <input type="radio" name="change" value="Final"> Final version-->
+            {% if version == "First" %}
+            <button name="change" type="submit" class="btn btn-info" value="First" background="#fc4a1a">First
+                Prototype
+            </button>
+            {% else %}
+            <button name="change" type="submit" class="btn btn-info" value="First">First Prototype</button>
+            {% endif %}
+            {% if version == "Second" %}
+            &nbsp;&nbsp;
+            <button name="change" type="submit" class="btn btn-info" value="Second" background-color="#fc4a1a">Second
+                Prototype
+            </button>
+            {% else %}
+            &nbsp;&nbsp;
+            <button name="change" type="submit" class="btn btn-info" value="Second">Second Prototype</button>
+            {% endif %}
+            {% if version == "Final" %}
+            &nbsp;&nbsp;
+            <button name="change" type="submit" class="btn btn-info" value="Final" background="#fc4a1a">Final Version
+            </button>
+            <br><br>
+            {% else %}
+            &nbsp;&nbsp;
+            <button name="change" type="submit" class="btn btn-info" value="Final">Final Version</button>
+            <br><br>
+            {% endif %}
+            {% if version == "Second" or version == "Final" %}
+            <textarea name="search" rows="10" cols="70" class="form-control" placeholder="Enter job description..."
+                      color="black">{{original_search}}</textarea>
+            {% else %}
+            <input id="input" type="text" name="search" class="form-control"
+                   placeholder="Enter skills separated by comma">
+            {% endif %}
+            <br><br>
+            <!--                <class="form-inline global-search" input id="input" type="text" name="search1" class="form-control" placeholder="Your Input"><br><br>-->
+        </div>
+        <br>
+        <button name="change" type="submit" class="btn btn-info" value="{{version}}"> Search Courses!</button>
+        <br><br>
+        {% if second_select == "True" and version != "First" %}
+        <b>SELECT SKILLS YOU WANT TO IMPROVE</b><br><br>
+        <div>
+            {% for search,_ in zipped %}
+            <!--<input type="checkbox" name="known_courses" value="{{search}}"> {{search}}&nbsp;&nbsp;-->
+            <input type="checkbox" name="known_courses" value="{{search}}"> {{search}}&nbsp;&nbsp;&nbsp;
+            {% endfor %}
+        </div>
+        <br><br>
+        <button name="change" type="submit" class="btn btn-info" value="{{version}}"> Filter Courses!</button>
         {% endif %}
     </form>
 </div>
