@@ -33,10 +33,19 @@ font-family:Futura;
 font-weight:bold;
 text-align:right;
 }
+
 .btn{
 background-color: #ffcc00;
 border: none
 }
+
+.btn-v3 {
+background-color: #d83f87;
+padding: 8px 8px 8px 8px;
+border-radius: 15px;
+border: none
+}
+
 .btn:hover {
 background: #fc4a1a
 }
@@ -54,6 +63,16 @@ color:#4abdac;
 border-bottom: 4px solid #ffcc00;
 font-family:Futura;
 }
+
+.you-searched-for-v3 {
+background:#ffffff;
+border-top-right-radius:25px;
+border-top-left-radius:25px;
+color:#44318d;
+border-bottom: 4px solid #8d8e8a;
+font-family:Futura;
+}
+
 .display-urls {
 width:400px;
 float:left;
@@ -67,6 +86,12 @@ font-size: 15px;
 }
 .top-banner {
 background:#4abdac;
+color:white;
+font-family:Futura;
+}
+
+.top-banner-v3 {
+background:#44318d;
 color:white;
 font-family:Futura;
 }
@@ -133,12 +158,13 @@ background-clip: text;
 }
 
 .user-tags {
-    border: 3px;
+    border: 0.25px;
     border-style: solid;
     display: inline-block;
     border-radius: 15px;
-    padding: 3px 5px 3px 5px;
+    padding: 3px 3px 3px 3px;
 }
+
 
 .text-center {
     text-align:center;
@@ -146,4 +172,38 @@ background-clip: text;
 
 .set-font {
     font-family: Futura;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+.score-box-green {
+    border: 0.25px;
+    color: #82e0aa;
+    border-style: solid;
+    display: inline-block;
+    border-radius: 15px;
+    padding: 3px 3px 3px 3px;
+}
+
+.score-box-yellow {
+    border: 0.25px;
+    color: #f7dc6f;
+    border-style: solid;
+    display: inline-block;
+    border-radius: 15px;
+    padding: 3px 3px 3px 3px;
+}
+
+.score-box-red {
+    border: 0.25px;
+    color: #f1948a;
+    border-style: solid;
+    display: inline-block;
+    border-radius: 15px;
+    padding: 3px 3px 3px 3px;
 }
