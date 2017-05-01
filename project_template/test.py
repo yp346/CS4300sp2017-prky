@@ -290,7 +290,7 @@ def tfidf_sentiment_sim_weighted_2(q):
         skill_tag_list = review_tag_list[i]
         for j in range(len(final_return_list[i])):
             t = final_return_list[i][j]
-            temp.append((t[0], t[1], t[2], ', '.join(skill_tag_list[j][3:][::-1]), ', '.join(skill_tag_list[j][:3][::-1])))
+            temp.append((t[0], t[1], t[2], skill_tag_list[j][3:][::-1], skill_tag_list[j][:3][::-1]))
         final_list.append(temp)
 
     return final_list

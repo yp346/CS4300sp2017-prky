@@ -111,11 +111,13 @@
 {% if second_select != "True" %}
 {% if version == "Final" %}
 <div class="row">
-    <div class="col-md-2">
+    {% if overall_op %}
+    <div class="you-searched-for">
         <h3 align="center">Overall Courses </h3></div>
+    {% endif %}
     <br>
     {% for course in overall_op %}
-    <div class="col-md-2">
+    <div class="col-md-5ths col-xs-6">
     <!--<span style="color:#fc4a1a"><b>{{course.0}}</b></span>-->
     <br> <a target="_blank" href="{{course.1}}" style="color:#fc4a1a">{{course.0}}</a><br><br>
     </div>
@@ -144,13 +146,14 @@
     </div>
 </div>
 {% else %}
-<div class="display-urls">
+<div class="row">
     <div class="you-searched-for">
-        <h3>You searched for: <b style="color:#fc4a1a">{{search}}</b></h3></div>
+        <h3 align="center">You searched for: <b style="color:#fc4a1a">{{search}}</b></h3></div>
     <br>
     {% for line in search_query %}
+    <div class="col-md-5ths col-xs-6 text-center set-font">
     <!--<span style="color:#fc4a1a"><b>{{line.1}}</b></span>-->
-    <br> <a target="_blank" href="{{line.2}}" style="color:#fc4a1a">{{line.1}}</a>
+    <br> <a target="_blank" href="{{line.2}}" style="color:#fc4a1a; font-size:15px">{{line.1}}</a>
     <br><b> Sentiment Score: &nbsp;
     {% if line.0 > "0.0" %}
     <span style="background-color:#82e0aa; width:60px">{{line.0}}</span>
@@ -160,15 +163,24 @@
     <span style="background-color:#f7dc6f; width:60px">{{line.0}}</span>
     {% endif %}
 </b><br>
-    {% if line.3 == "" and line.4 == "" %}
+    {% if not line.3 and not line.4 %}
     <b>No reviews are available for this course.</b>
     {% else %}
     <b>Sentiment Tags: </b><br>
-    <b><span class="rainbow_positive">{{line.3}}, </span><br>
-        <span class="rainbow_negitive">{{line.4}}</span></b><br><br>
-    {% endif %}
-    {% endfor %}
+    <div>
+        {% for tag in line.3 %}
+        <p class="user-tags text-center">{{tag}}</p>
+        {% endfor %}
+        {% for tag in line.4 %}
+        <p class="user-tags text-center">{{tag}}</p>
+        {% endfor %}
     </div>
+    <!--<b><span class="rainbow_positive">{{line.3}}, </span><br>
+        <span class="rainbow_negitive">{{line.4}}</span></b>-->
+    {% endif %}
+    </div>
+    {% endfor %}
+
 </div>
     {% endif %}
 {% endfor %}
