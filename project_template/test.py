@@ -322,6 +322,7 @@ def get_overall_courses(course_list):
     course_skill_count = {}
     course_total_score = {}
     course_url_name = {}
+    course_senti_tags = {}
 
     for skill in course_list:
         skill_rank = 5
@@ -332,6 +333,7 @@ def get_overall_courses(course_list):
             course_rank_score[course_url] = course_rank_score.get(course_url,0) + skill_rank
             course_skill_count[course_url] = course_skill_count.get(course_url,0) + 1
             course_url_name[course_url] = course_name
+            course_senti_tags[course_url] = (course[0],course[3],course[4])
 
     for course_url in course_rank_score.keys():
         course_total_score[course_url] = (course_skill_count[course_url],course_rank_score[course_url])
@@ -343,7 +345,8 @@ def get_overall_courses(course_list):
     for course in sorted_course[:5]:
         course_url = course[0]
         course_name = course_url_name[course_url]
-        return_list.append((course_name, course_url))
+        t = course_senti_tags[course_url]
+        return_list.append((t[0],course_name, course_url,t[1],t[2]))
 
     return return_list
 

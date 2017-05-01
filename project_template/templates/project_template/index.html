@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <link rel="stylesheet" href="/static/main.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 			$(document).ready(function()
@@ -192,13 +193,38 @@
 <div class="row">
     {% if overall_op %}
     <div class="you-searched-for-v3">
-        <h3 align="center">Overall Courses </h3></div>
+        <h3 style="text-align:center">Overall Courses </h3></div>
     {% endif %}
     <br>
     {% for course in overall_op %}
     <div class="col-md-5ths col-xs-6 text-center set-font">
     <!--<span style="color:#fc4a1a"><b>{{course.0}}</b></span>-->
-    <br> <a target="_blank" href="{{course.1}}" style="color:#d83f87; font-size:17px">{{course.0}}</a><br><br>
+    <br> <a target="_blank" href="{{course.2}}" style="color:#d83f87; font-size:17px">{{course.1}}</a><br>
+    <br><b style="color:#8d8e8a"> Sentiment Score:
+    {% if course.0 > "0.0" %}
+    <span class="score-box-green">{{course.0}}</span>
+    {% elif line.0 < "0.0" %}
+    <span class="score-box-red">{{course.0}}</span>
+    {% else %}
+    <span class="score-box-yellow">{{course.0}}</span>
+    {% endif %}
+</b><br><br>
+    <input id="toggle" type="checkbox">
+  <label for="toggle">User Review Sentiment Tags</label>
+  <div id="expand">
+    {% if not course.3 and not course.4 %}
+    <b>No reviews are available for this course.</b>
+    {% else %}
+        <br>
+        {% for tag in course.3 %}
+        <p class="user-tags text-center">{{tag}}</p>
+        {% endfor %}
+        {% for tag in course.4 %}
+        <p class="user-tags text-center">{{tag}}</p>
+        {% endfor %}
+
+    {% endif %}
+    </div>
     </div>
     {% endfor %}
 </div>
@@ -225,6 +251,8 @@
     </div>
 </div>
 {% else %}
+
+
 <div class="row">
     <div class="you-searched-for-v3">
         <h3 align="center">You searched for: <b style="color:#5bc0de">{{search}}</b></h3></div>
@@ -242,21 +270,24 @@
     <span class="score-box-yellow">{{line.0}}</span>
     {% endif %}
 </b><br><br>
+    <input id="toggle" type="checkbox">
+  <label for="toggle">User Review Sentiment Tags</label>
+  <div id="expand">
     {% if not line.3 and not line.4 %}
     <b>No reviews are available for this course.</b>
     {% else %}
-    <b style="color:#8d8e8a">Sentiment Tags from User Reviews: </b><br>
-    <div>
+        <br>
         {% for tag in line.3 %}
         <p class="user-tags text-center">{{tag}}</p>
         {% endfor %}
         {% for tag in line.4 %}
         <p class="user-tags text-center">{{tag}}</p>
         {% endfor %}
-    </div>
+
     <!--<b><span class="rainbow_positive">{{line.3}}, </span><br>
         <span class="rainbow_negitive">{{line.4}}</span></b>-->
     {% endif %}
+    </div>
     </div>
     {% endfor %}
 

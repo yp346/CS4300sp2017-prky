@@ -69,8 +69,8 @@ background:#ffffff;
 border-top-right-radius:25px;
 border-top-left-radius:25px;
 color:#44318d;
-border-bottom: 4px solid #8d8e8a;
 font-family:Futura;
+border-bottom: 4px solid #8d8e8a;
 }
 
 .display-urls {
@@ -201,9 +201,37 @@ background-clip: text;
 
 .score-box-red {
     border: 0.25px;
-    color: #f1948a;
+    color: #ff0000;
     border-style: solid;
     display: inline-block;
     border-radius: 15px;
     padding: 3px 3px 3px 3px;
+}
+
+.underline {
+    position: relative;
+    border-bottom: 4px solid #8d8e8a;
+    /*display:table-cell;
+    width:100%;*/
+}
+
+#expand {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+}
+
+#toggle:checked ~ #expand {
+  height: 250px;
+}
+#toggle:checked ~ label::before {
+  content: "";
+}
+
+
+.tag-box {
+    background-color: #d83f87;
+    padding: 8px 8px 8px 8px;
+    border-radius: 15px;
+    border: none
 }
