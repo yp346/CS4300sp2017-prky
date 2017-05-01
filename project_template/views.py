@@ -8,6 +8,8 @@ from .test import find_similar
 from .test import tfidf_sim
 from .test import tfidf_sentiment_sim
 from .test import tfidf_sentiment_sim_weighted
+from .test import tfidf_sentiment_sim_weighted_2
+from .test import get_overall_courses
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import nltk
 import json
@@ -20,6 +22,7 @@ def index(request):
     search=''
     original_search=""
     zipped=[]
+    overall_op = []
     second_select = "False"
     version = request.GET.get('change')
     known_courses = ""
@@ -92,7 +95,8 @@ def index(request):
         	#search = ",".join(nps)
         	#output_list = find_similar(search)
         	if known_courses!="":
-		    	output = tfidf_sentiment_sim_weighted(known_courses)
+		    	output = tfidf_sentiment_sim_weighted_2(known_courses)
+			overall_op = get_overall_courses(output)
 		    	zipped = zip(known_courses1,output)
 		    	second_select = "False"
 		else:
@@ -114,6 +118,7 @@ def index(request):
     return render_to_response('project_template/index.html', 
                               {'output': output,
                                'search': search,
+			       'overall_op' : overall_op,
                                'zipped': zipped,
 			       'second_select': second_select,
 			       'known_courses': known_courses,

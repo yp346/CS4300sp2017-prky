@@ -66,6 +66,16 @@
         </form>
 	</div>
         {% if second_select != "True" %}
+		{% if version == "Final" %}
+			<div class="display-urls">
+			<div class="you-searched-for">
+	    	<h3>Overall Courses </h3></div><br>
+			{% for course in overall_op %}
+				<span style="color:#fc4a1a"><b>{{course.0}}</b></span>
+				<br> <a target="_blank" href="{{course.1}}" style="color:#07889b">{{course.1}}</a><br><br>
+			{% endfor %}
+			</div>
+		{% endif %}
 	{% for search,search_query in zipped %}
         <div class="display-urls">
             <div class="you-searched-for">   
@@ -79,17 +89,21 @@
                 <span style="color:#fc4a1a"><b>{{line.1}}</b></span>
 				<br> <a target="_blank" href="{{line.2}}" style="color:#07889b">{{line.2}}</a>
 				<br><b> Sentiment Score: &nbsp;
-					{% if line.0 > 0 %}
+					{% if line.0 > "0.0" %}
 					<span style="background-color:#82e0aa; width:60px">{{line.0}}</span>
-					{% elif line.0 == 0.0 %}
-					<span style="background-color:#f7dc6f; width:60px">{{line.0}}</span>
-					{% else %}
+					{% elif line.0 < "0.0" %}
 					<span style="background:#f1948a; width:60px">{{line.0}}</span>
+					{% else %}
+					<span style="background-color:#f7dc6f; width:60px">{{line.0}}</span>
 					{% endif %}
 					</b><br>
+				{% if line.3 == "" and line.4 == "" %}
+				<b>No reviews are available for this course.</b>
+				{% else %}
 				<b>Sentiment Tags: </b><br>
 				<b><span class="rainbow_positive">{{line.3}}, </span><br>
 					<span class="rainbow_negitive">{{line.4}}</span></b><br><br>
+				{% endif %}
                 {% endif %}
             {% endfor %}
         </div>
