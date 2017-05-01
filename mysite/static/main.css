@@ -9,7 +9,7 @@ padding: 20px 0;
 text-align:center;
 }
 body {
-padding-top: 15%;
+/*padding-top: 15%;*/
 padding-bottom: 15px;
 }
 .global-search {
@@ -25,13 +25,13 @@ margin-bottom:0;
 }
 }
 .topcorner{
-position:absolute;
+/*position:absolute;*/
 top:2%;
 right:2%;
-color: #fc4a1a;
-font-family:Segoe UI;
+color: #ffffff;
+font-family:Futura;
 font-weight:bold;
-text-align:center;
+text-align:right;
 }
 .btn{
 background-color: #ffcc00;
@@ -52,7 +52,7 @@ border-top-right-radius:25px;
 border-top-left-radius:25px;
 color:#4abdac;
 border-bottom: 4px solid #ffcc00;
-font-family:Segoe UI;
+font-family:Futura;
 }
 .display-urls {
 width:400px;
@@ -62,13 +62,13 @@ height:400px;
 margin:50px;
 text-align:center;
 background:#ffffff;
-font-family:Segoe UI;
+font-family:Futura;
 font-size: 15px;
 }
 .top-banner {
 background:#4abdac;
 color:white;
-font-family:Segoe UI;
+font-family:Futura;
 }
 
 .rainbow_positive {
@@ -85,4 +85,13 @@ background-image: gradient( linear, left top, right top, color-stop(0, #f1c40f),
 color:transparent;
 -webkit-background-clip: text;
 background-clip: text;
+}
+
+.pollSlider{
+    position:fixed;
+    height:100%;
+    background:red;
+    width:200px;
+    right:0px;
+    margin-right: -200px;
 }
