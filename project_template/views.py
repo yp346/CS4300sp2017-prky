@@ -24,7 +24,7 @@ def index(request):
     zipped=[]
     overall_op = []
     second_select = "False"
-    version = request.GET.get('change')
+    version = request.GET.get('change',"Final")
     known_courses = ""
     #version = request.GET.get('submit_button')
     if request.GET.get('known_courses'):
