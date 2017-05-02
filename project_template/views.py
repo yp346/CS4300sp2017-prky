@@ -58,7 +58,7 @@ def index(request):
         	#search = ",".join(nps)
         	#output_list = find_similar(search)
         	if known_courses!="":
-		    	output = tfidf_sentiment_sim(known_courses)
+		    	output = tfidf_sentiment_sim_weighted(known_courses)
 		    	zipped = zip(known_courses1,output)
 		    	second_select = "False"
 		else:
