@@ -65,7 +65,7 @@ font-family:Futura;
 }
 
 .you-searched-for-v3 {
-background:#ffffff;
+background-color: inherit;
 border-top-right-radius:25px;
 border-top-left-radius:25px;
 color:#44318d;
@@ -94,6 +94,7 @@ font-family:Futura;
 background:#44318d;
 color:white;
 font-family:Futura;
+/*background-image: url(images/test.jpg);*/
 }
 
 .rainbow_positive {
@@ -129,6 +130,8 @@ background-clip: text;
     min-height: 1px;
     padding-right: 20px;
     padding-left: 20px;
+    background-color: #8d8e8a;
+    margin: .28px;
 }
 
 .col-xs-5ths {
@@ -235,3 +238,4 @@ background-clip: text;
     border-radius: 15px;
     border: none
 }
+
