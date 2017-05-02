@@ -68,9 +68,9 @@ font-family:Futura;
 background-color: inherit;
 border-top-right-radius:25px;
 border-top-left-radius:25px;
-color:#44318d;
+color:#a0522d;
 font-family:Futura;
-border-bottom: 4px solid #8d8e8a;
+border-bottom: 3px dashed #000000;
 }
 
 .display-urls {
@@ -91,10 +91,13 @@ font-family:Futura;
 }
 
 .top-banner-v3 {
-background:#44318d;
+/*background:#44318d;*/
 color:white;
 font-family:Futura;
-/*background-image: url(images/test.jpg);*/
+background-image: url(bb.jpg);
+background-size:     cover;
+background-repeat:   no-repeat;
+background-position: center center;
 }
 
 .rainbow_positive {
@@ -186,7 +189,7 @@ background-clip: text;
 
 .score-box-green {
     border: 0.25px;
-    color: #82e0aa;
+    color: #32cd32;
     border-style: solid;
     display: inline-block;
     border-radius: 15px;
@@ -238,4 +241,3 @@ background-clip: text;
     border-radius: 15px;
     border: none
 }
-
