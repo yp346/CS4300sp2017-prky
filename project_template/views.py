@@ -32,6 +32,7 @@ def index(request):
         known_courses = ",".join(known_courses1)
     if request.GET.get('search'):
     	original_search = request.GET.get('search')
+
     	if version == 'First':
     		search = request.GET.get('search')
     		output_list = find_similar(search)

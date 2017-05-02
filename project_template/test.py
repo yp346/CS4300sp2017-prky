@@ -224,6 +224,7 @@ def tfidf_sentiment_sim_weighted_2(q):
     dir_cur = os.path.dirname(__file__)
     file_path_obj = os.path.join(dir_cur, "../jsons/tfidf_obj.pk")
     file_path_np = os.path.join(dir_cur, "../jsons/tf_idf.npy")
+    file_path_title = os.path.join(dir_cur, "../jsons/tf_idf_title.npy")
     file_features = os.path.join(dir_cur, "../jsons/feature_names.json")
     course_desc_path = os.path.join(dir_cur, "../jsons/course_desc_list.json")
     course_url_path = os.path.join(dir_cur, "../jsons/course_url_list.json")
@@ -238,6 +239,8 @@ def tfidf_sentiment_sim_weighted_2(q):
         vectorizer = pickle.load(fp)
     with open(file_path_np, "rb") as fp:
         doc_by_vocab = np.load(fp)
+    with open(file_path_title,"rb") as fp:
+        title_by_vocab = np.load(fp)
     with open(file_features, "r") as fp:
         content = fp.read()
         features = json.loads(content)  # .decode("utf-8","ignore"))
@@ -253,7 +256,9 @@ def tfidf_sentiment_sim_weighted_2(q):
     new_tfidf = TfidfVectorizer(vocabulary=features, max_features=5000, stop_words="english", norm="l2")
     query_list = q.split(",")
     query_by_vocab = new_tfidf.fit_transform(query_list).toarray()
-    sim_matrix = np.dot(query_by_vocab, doc_by_vocab.T)
+    sim_matrix_1 = np.dot(query_by_vocab, doc_by_vocab.T)
+    sim_matrix_2 = np.dot(query_by_vocab,title_by_vocab.T)
+    sim_matrix = (0.25*sim_matrix_1)+(0.75*sim_matrix_2)
     # sim_matrix = final.flatten()
     sorted_sim = np.argsort(-sim_matrix)
     sorted_values = np.sort(sim_matrix)
